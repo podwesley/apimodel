@@ -1,0 +1,37 @@
+# Intellij
+.idea
+*.iml
+
+# Out
+/target
+
+# Results
+.allure
+/allure-results_old
+/allure-results
+/build
+/screenshots
+
+# Eclipse
+.Trashes
+.settings
+.project
+.classpath
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
