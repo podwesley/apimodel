@@ -146,7 +146,7 @@
                 <artifactId>allure-maven</artifactId>
                 <version>${allure.maven}</version>
                 <configuration>
-                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
 
