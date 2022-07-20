@@ -1,24 +1,46 @@
 package br.com.company;
 
 import br.com.company.core.RestProvider;
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+import br.com.company.domain.SimpleUser;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.http.ContentType;
+import org.junit.Test;
 
+import static io.restassured.RestAssured.given;
+
+/***
+ * Testes de serialização/(de)-serialização com RestAssured.
+ */
 public class Teste extends RestProvider {
 
 
-    @org.junit.Test
-    @Story("POST Request")
-    @Severity(SeverityLevel.NORMAL)
-    @Description("Test Description : Verify the creation of a new employee")
-    public void teste (){
+    /***
+     * @Author: Wesley Rodrigues Soares 2022.
+     * usar o get que ja faz a de-serialização
+     */
+    @Test
+    public void testeDeserializar() {
 
+        SimpleUser simpleUser = new SimpleUser();
+
+        simpleUser.setName("Teste");
+        simpleUser.setAge(12);
+
+        SimpleUser newUser =  given()
+                .when()
+                .get("http://resources")
+                .as(SimpleUser.class);
+
+    }
+
+
+    @Test
+    public void testeSerializar() {
 
 
 
     }
+
 
 
 }

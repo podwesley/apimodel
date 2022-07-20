@@ -25,29 +25,6 @@ public class RestProvider {
 
     //******* OPERAÇÕES HTTP
 
-    /***
-     * POST
-     * @Author Wesley R
-     * @param body
-     * @param endpoint
-     * @return
-     */
-    protected <T> RestProvider post(T body, String endpoint) {
-
-        response = given()
-                .filter(new AllureRestAssured())
-                .log()
-                .all()
-                .contentType(ContentType.JSON)
-                .and()
-                .body(body)
-                .when()
-                .post(endpoint)
-                .then()
-                .extract().response();
-        return this;
-    }
-
     /****
      * GET
      * @param endpoint
@@ -65,6 +42,31 @@ public class RestProvider {
                 .then()
                 .extract().response();
         return this;
+    }
+
+    /***
+     * POST
+     * @Author Wesley R
+     * @param classz
+     * @param endpoint
+     * @return
+     */
+    protected <T> T post(Class<T> classz, String endpoint) {
+
+        return given()
+                .filter(new AllureRestAssured())
+                .log()
+                .all()
+                .contentType(ContentType.JSON)
+                .and()
+                .body(classz)
+                .when()
+                .post(endpoint)
+                .then()
+                .extract()
+                .response()
+                .body()
+                .as(classz);
     }
 
     /***
