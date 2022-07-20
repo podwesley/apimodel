@@ -15,7 +15,12 @@ public class StepsSimulacao extends RestProvider {
 
     @When("devo incluir uma pessoa via POST")
     public void criarUmaSimulacao(DataTable dataTable) {
-        post(new Usuario(dataTable.asMap()), SIMULAR_EMPRESTIMO);
+
+        Usuario usuario = new Usuario(dataTable.asMap());
+        Usuario reponsePost = post(usuario, SIMULAR_EMPRESTIMO);
+
+        Assert.assertEquals(usuario.getCpf(), reponsePost.getCpf());
+        Assert.assertEquals(usuario.getNome(), reponsePost.getNome());
     }
 
 

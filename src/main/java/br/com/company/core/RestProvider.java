@@ -1,5 +1,6 @@
 package br.com.company.core;
 
+import br.com.company.domain.Usuario;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -47,11 +48,9 @@ public class RestProvider {
     /***
      * POST
      * @Author Wesley R
-     * @param classz
-     * @param endpoint
      * @return
      */
-    protected <T> T post(Class<T> classz, String endpoint) {
+    protected <T> T post(T body, String endpoint) {
 
         return given()
                 .filter(new AllureRestAssured())
@@ -59,14 +58,14 @@ public class RestProvider {
                 .all()
                 .contentType(ContentType.JSON)
                 .and()
-                .body(classz)
+                .body(body)
                 .when()
                 .post(endpoint)
                 .then()
                 .extract()
                 .response()
                 .body()
-                .as(classz);
+                .as(body.getClass().asSubclass(body.getClass()));
     }
 
     /***
