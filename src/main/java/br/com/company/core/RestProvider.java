@@ -1,26 +1,25 @@
 package br.com.company.core;
 
-import br.com.company.domain.Usuario;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-import static br.com.company.enuns.Settings.ambiente;
-import static io.restassured.RestAssured.baseURI;
+import static br.com.company.core.ConfigLoader.getProperty;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.junit.Assert.assertEquals;
 
+import static io.restassured.RestAssured.baseURI;
 /**
  * @Author: Wesley R.
  */
-public class RestProvider {
+public class RestProvider { // teste MCP server github
 
     private Response response;
 
     public RestProvider() {
-        baseURI = ambiente;
+        baseURI = getProperty("base.uri");
     }
 
 
@@ -28,8 +27,6 @@ public class RestProvider {
 
     /****
      * GET
-     * @param endpoint
-     * @return
      */
     protected RestProvider get(String endpoint) {
 
